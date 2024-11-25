@@ -1,0 +1,26 @@
+name: 'Jira ticket version check'
+description: 'Match Jira ticket version with target pr branch'
+author: 'Bastian Hess'
+inputs:
+  JIRA_ISSUE_REGEX: 
+      description: 'Jira issue regex'
+      required: false
+  JIRA_URL: 
+      description: 'Jira URL'
+      required: true
+  JIRA_USER: 
+      description: 'Jira username'
+      required: true
+  JIRA_PASSWORD: 
+      description: 'Jira password'
+      required: true
+  GITHUB_TOKEN: 
+      description: 'Github token'
+      required: true
+  NOT_FOUND_MESSAGE:
+      description: 'Comment PR if jira ticket version is missing'
+      required: false
+      default: 'Jira ticket version not found, please check!'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
