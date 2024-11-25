@@ -26,7 +26,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
-    "jira-client": "^6.23.0"
+    "jira-client": "^8.2.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
