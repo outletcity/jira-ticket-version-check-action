@@ -26,13 +26,13 @@ Comment message when no Fixversion found in Jira issue.
 ```
 name: 'Check Fixversion'
 on:
-  pull_request
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
 jobs:
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: outletcity/jira-ticket-version-check-action@1.0.0
+      - uses: outletcity/jira-ticket-version-check-action@1.1.2
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NOT_FOUND_MESSAGE: "Keine Jira Ticket Version angegeben, bitte prüfen!"
