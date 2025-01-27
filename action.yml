@@ -20,7 +20,6 @@ inputs:
   NOT_FOUND_MESSAGE:
       description: 'Comment PR if jira ticket version is missing'
       required: false
-      default: 'Jira ticket version not found, please check!'
 runs:
   using: 'node12'
   main: 'dist/index.js'
