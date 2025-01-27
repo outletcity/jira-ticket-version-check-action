@@ -30,7 +30,7 @@ export class JiraConnector {
   async getfixVersionFromTicket(issueKey: string): Promise<string> {
     try {
       const issue = await this.jira.findIssue(issueKey)
-      return issue?.fields?.fixVersions[0]?.name
+      return issue?.fields?.fixVersions?.[0]?.name
     } catch (error) {
       return Promise.reject(error)
     }
@@ -39,13 +39,12 @@ export class JiraConnector {
   private extractSemver(input: string): string | null {
     const semverRegex = /(?:^|[^0-9.])(\d+\.\d+\.\d+)(?:$|[^0-9.])/
     const match = input.match(semverRegex)
-    return match ? match[0] : null
+    return match ? match[1] : null
   }
 
   isMatchedVersion(fixVersion: string, targetBranch: string): boolean {
     const fixVersionSemver = this.extractSemver(fixVersion)
     const targetBranchSemver = this.extractSemver(targetBranch)
-
     if (fixVersionSemver && targetBranchSemver) {
       return fixVersionSemver === targetBranchSemver
     }
