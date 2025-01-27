@@ -36,7 +36,7 @@ export class PullRequestConnector {
   /**
    * @throws {Error}
    */
-  async writeComment(): Promise<void> {
+  async writeNotFoundComment(): Promise<void> {
     const {NOT_FOUND_MESSAGE} = getInputs()
 
     if (!NOT_FOUND_MESSAGE) {

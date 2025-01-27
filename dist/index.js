@@ -181,6 +181,7 @@ async function run() {
             const issueKey = jiraConnector.getIssueCodeFromBranch(sourceBranch);
             const fixVersion = await jiraConnector.getfixVersionFromTicket(issueKey);
             if (!fixVersion) {
+                await pullRequestConnector.writeNotFoundComment();
                 console.log('Fix version in Jira not found');
                 process.exit(0);
             }
@@ -264,7 +265,7 @@ class PullRequestConnector {
     /**
      * @throws {Error}
      */
-    async writeComment() {
+    async writeNotFoundComment() {
         const { NOT_FOUND_MESSAGE } = (0, inputs_1.getInputs)();
         if (!NOT_FOUND_MESSAGE) {
             return;
